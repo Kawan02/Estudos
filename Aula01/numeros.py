@@ -1,34 +1,11 @@
 # Programação Orientada a Objetos
 # AC01 POO-EaD - Números especiais
 #
-# Email Impacta: __________@aluno.faculdadeimpacta.com.br
+# Email Impacta: kawan.messias@aluno.faculdadeimpacta.com.br
+
 
 
 def eh_primo(n):
-	"""Função que verifica se um número é primo
-
-	Recebe um número natural n, com n >= 2, e retorna verdadeiro se
-	n é um número primo e falso caso contrário.
-
-	Exemplos
-	--------
-	Um número é dito primo se possuir apenas 2 divisores, isto é,
-	não possuir nenhum divisor além do 1 e do próprio n.
-	29 é primo:
-		divisores de 29: 1, 29
-	30 NÃO é primo:
-		divisores de 30: 1, 2, 3, 5, 6, 10, 15, 30
-
-	Parâmetros
-	----------
-	n : int
-		Número natural a ser testado.
-
-	Retorno
-	-------
-	bool
-		True se n for um número primo e False caso contrário.
-	"""
 	
 	qtd_divisores = 0
 	i = 1	#Variavel contadora
@@ -48,24 +25,6 @@ def eh_primo(n):
 
 
 def lista_primos(n):
-	"""Função que retorna uma lista de primos até n
-
-	Recebe um número natural n, com n >= 2, e retorna uma
-	lista com todos o números primos estritamente menores
-	que n, em ordem crescente.
-
-	Parâmetros
-	----------
-	n : int
-		Número natural que define o limite superior da lista.
-
-	Retorno
-	-------
-	list
-		itens : int
-		descrição : Lista com todos os números primos menores
-			que n, em ordem crescente.
-	"""
  
 	lista = []
 	for i in range(2, n): # i varia de 2 até n -1
@@ -108,7 +67,19 @@ def conta_primos(s):
 			o total de ocorrências do número primo na
 			sequência s.
 	"""
+	primos = []
+	qnt = []
+	for i in list(dict.fromkeys(s)):
+		if eh_primo (i) is True:
+			primos.append(i)
+			qnt.append(s.count(i))
+	resul = dict(
+    	zip(primos, qnt)
+     )
+	return resul
 	pass
+
+
 
 
 def eh_armstrong(n):
@@ -137,6 +108,14 @@ def eh_armstrong(n):
 	bool
 		True se n for um número de Armstrong e False caso contrário.
 	"""
+	qualquer = str(n)
+	numero = 0
+	for i in qualquer:
+		numero += int(i) ** len(qualquer)
+	if numero == n:
+		return True
+	else:
+		return False
 	pass
 
 
@@ -167,6 +146,19 @@ def eh_quase_armstrong(n):
 	bool
 		True se n for um número quase de Armstrong e False caso contrário.
 	"""
+	if eh_armstrong(n) is not True:
+			valor = str(n)
+			ams = 0
+			for i in valor:
+				ams += int(i) ** len(valor)
+			if ams == n + 1:
+				return True
+			elif ams == n - 1:
+				return True
+			else:
+				return False
+	else:
+		return False
 	pass
 
 
@@ -188,6 +180,11 @@ def lista_armstrong(n):
 		descrição : Uma lista contendo todos os números de Armstrong
 			menores que n, em ordem crescente.
 	"""
+	listAms = []
+	for i in range(0, n):
+		if eh_armstrong(i) is True:
+			listAms.append(i)
+	return listAms
 	pass
 
 
@@ -218,6 +215,14 @@ def eh_perfeito(n):
 	bool
 		True se n for um número perfeito e False caso contrário.
 	"""
+	pft = 1
+	for i in range(2,n):
+		if n % i == 0:
+			pft += i
+	if pft == n:
+		return True
+	else:
+		return False
 	pass
 
 
@@ -240,4 +245,9 @@ def lista_perfeitos(n):
 		descrição : Uma lista contendo todos os números perfeitos
 			menores que n em ordem crescente.
 	"""
+	listaPerfeita = []
+	for i in range(2, n):
+		if eh_perfeito(i) is True:
+			listaPerfeita.append(i)
+	return listaPerfeita
 	pass
